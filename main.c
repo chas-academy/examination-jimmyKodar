@@ -6,6 +6,7 @@ typedef struct
 {
     char name[11];
     int scores[13];
+    int score_average;
 } Student;
 
 int main()
@@ -13,12 +14,18 @@ int main()
     int nr_of_students = 5;
     Student students[nr_of_students];
 
-    // zero out name arrays
+    // zero out students array
     for (int i = 0; i < nr_of_students; i++)
     {
+        students[i].score_average = 0; // zero out average
+
         for (int j = 0; j < 11; j++)
         {
-            students[i].name[j] = '\0';
+            students[i].name[j] = '\0'; // zero out name
+        }
+        for (int j = 0; j < 13; j++)
+        {
+            students[i].scores[j] = 0; // zero out scores
         }
     }
 
@@ -60,25 +67,39 @@ int main()
             }
         }
     }
+    // for (int i = 0; i < nr_of_students; i++)
+    // {
+    //     printf("\n%s %d %d %d %d %d %d %d %d %d %d %d %d %d",
+    //            students[i].name,
+    //            students[i].scores[0],
+    //            students[i].scores[1],
+    //            students[i].scores[2],
+    //            students[i].scores[3],
+    //            students[i].scores[4],
+    //            students[i].scores[5],
+    //            students[i].scores[6],
+    //            students[i].scores[7],
+    //            students[i].scores[8],
+    //            students[i].scores[9],
+    //            students[i].scores[10],
+    //            students[i].scores[11],
+    //            students[i].scores[12]);
+
+    //     // printf("\n%s", students[i].name); // testing names
+    // }
+
+    // find highest average score and print name of this student
+    int highest_averate_score = 0;
+    int highest_averate_score_student_index = -999;
+
     for (int i = 0; i < nr_of_students; i++)
     {
-        printf("\n%s %d %d %d %d %d %d %d %d %d %d %d %d %d",
-               students[i].name,
-               students[i].scores[0],
-               students[i].scores[1],
-               students[i].scores[2],
-               students[i].scores[3],
-               students[i].scores[4],
-               students[i].scores[5],
-               students[i].scores[6],
-               students[i].scores[7],
-               students[i].scores[8],
-               students[i].scores[9],
-               students[i].scores[10],
-               students[i].scores[11],
-               students[i].scores[12]);
-
-        // printf("\n%s", students[i].name); // testing names
+        if (students[i].score_average > highest_averate_score)
+        {
+            highest_averate_score_student_index = i;
+            highest_averate_score = students[i].score_average;
+        }
     }
+
     return 0;
 }
